@@ -1,14 +1,20 @@
 FROM registry.access.redhat.com/ubi9/python-39:1-172
 
+# Install necessary software
+RUN apt-get update && \
+    apt-get -y install cron
+
 COPY requirements.txt ./
+COPY crontab /etc/cron.d/crontab
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r ./requirements.txt
 
-#OLD
-#RUN pip install --upgrade --no-cache-dir jupyterlab
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/crontab
 
-#Port Expose
-EXPOSE 8888
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
 
-CMD [ "jupyter","lab","--ip=0.0.0.0" ]
+# Start the cron service
+CMD cron && tail -f /var/log/cron.log
