@@ -1,8 +1,8 @@
 FROM registry.access.redhat.com/ubi9/python-39:1-172
 
 # Install necessary software
-RUN apt-get update && \
-    apt-get -y install cron
+RUN yum update && \
+    yum -y install cron
 
 COPY requirements.txt ./
 COPY crontab /etc/cron.d/crontab
