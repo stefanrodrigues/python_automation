@@ -1,5 +1,4 @@
-#FROM registry.access.redhat.com/ubi9/python-39:1-172
-FROM ubi9/s2i-base:rhel9.4.0
+FROM registry.access.redhat.com/ubi9/python-39:1-172
 USER root
 
 COPY requirements.txt ./
