@@ -6,8 +6,11 @@ COPY crontab /etc/crontab
 #RUN pip install --no-cache-dir --upgrade pip && \
 #    pip install --no-cache-dir -r ./requirements.txt
 
-#RUN yum install -y cronie && yum clean all
-RUN dnf update && dnf install cronie
+# Update image
+RUN dnf update --disablerepo=* --enablerepo=ubi-8-appstream-rpms --enablerepo=ubi-8-baseos-rpms -y && rm -rf /var/cache/yum
+RUN dnf install --disablerepo=* --enablerepo=ubi-8-appstream-rpms --enablerepo=ubi-8-baseos-rpms cronie -y && rm -rf /var/cache/yum
+
+#RUN dnf update && dnf install cronie
 
 RUN rm -rf /etc/localtime
 RUN ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
