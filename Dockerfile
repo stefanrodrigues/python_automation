@@ -7,8 +7,8 @@ COPY crontab /etc/crontab
 #    pip install --no-cache-dir -r ./requirements.txt
 
 # Update image
-RUN dnf update --disablerepo=* --enablerepo=ubi-8-appstream-rpms --enablerepo=ubi-8-baseos-rpms -y && rm -rf /var/cache/yum
-RUN dnf install --disablerepo=* --enablerepo=ubi-8-appstream-rpms --enablerepo=ubi-8-baseos-rpms cronie -y && rm -rf /var/cache/yum
+RUN dnf update --disablerepo=* --enablerepo=ubi-9-appstream-rpms --enablerepo=ubi-9-baseos-rpms	 -y && rm -rf /var/cache/yum
+RUN dnf install --disablerepo=* --enablerepo=ubi-9-appstream-rpms --enablerepo=ubi-9-baseos-rpms	 cronie -y && rm -rf /var/cache/yum
 
 #RUN dnf update && dnf install cronie
 
