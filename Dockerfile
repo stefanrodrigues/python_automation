@@ -1,5 +1,16 @@
 FROM registry.access.redhat.com/ubi9/python-39:1-172
-USER root
+#USER root
+
+ENV PYTHON_VERSION=3.9 \
+    PATH=$HOME/.local/bin/:$PATH \
+    PYTHONUNBUFFERED=1 \
+    PYTHONIOENCODING=UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    CNB_STACK_ID=com.redhat.stacks.ubi9-python-39 \
+    CNB_USER_ID=1001 \
+    CNB_GROUP_ID=0 \
+    PIP_NO_CACHE_DIR=off
 
 COPY requirements.txt ./
 COPY crontab /etc/crontab
