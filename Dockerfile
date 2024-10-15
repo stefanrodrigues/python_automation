@@ -7,7 +7,7 @@ COPY crontab /etc/crontab
 #    pip install --no-cache-dir -r ./requirements.txt
 
 #RUN yum install -y cronie && yum clean all
-RUN microdnf update && microdnf install cronie
+RUN dnf update && dnf install cronie
 
 RUN rm -rf /etc/localtime
 RUN ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
