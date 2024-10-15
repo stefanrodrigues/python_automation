@@ -6,7 +6,9 @@ COPY crontab /etc/crontab
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r ./requirements.txt
 
-RUN yum install -y cronie && yum clean all
+RUN sudo yum update
+RUN sudo yum install -y cronie && yum clean all
 
 RUN rm -rf /etc/localtime
 RUN ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+RUN sudo systemctl start crond.service
