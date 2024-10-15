@@ -19,7 +19,7 @@ COPY crontab /etc/crontab
 RUN ls -la /etc/pki/entitlement
 RUN rm /etc/rhsm-host
 RUN yum repolist --disablerepo=*
-RUN subscription-manager repos --enable rhocp-4.9-for-rhel-8-x86_64-rpms
+RUN subscription-manager repos --enable ubi-9-baseos-rpms
 RUN yum -y update
 RUN yum install -y openshift-clients.x86_64
     
